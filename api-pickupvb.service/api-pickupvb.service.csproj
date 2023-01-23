@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\api-pickupvb.data\api-pickupvb.data.csproj" />
+    <ProjectReference Include="..\api-pickupvb.model\api-pickupvb.model.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
