@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\api-pickupvb.model\api-pickupvb.model.csproj" />
+    <ProjectReference Include="..\api-pickupvb.service\api-pickupvb.service.csproj" />
   </ItemGroup>
 
 </Project>
