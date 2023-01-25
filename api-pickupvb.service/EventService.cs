@@ -31,10 +31,7 @@ namespace api_pickupvb.service
 
         public void Update(Event model)
         {
-            if (Guid.Empty == model.Id)
-            {
-                _context.Events.Update(model);
-            }
+            _context.Events.Update(model);
         }
 
         public async void Delete(Guid id)

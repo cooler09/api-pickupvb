@@ -36,21 +36,16 @@ public class EventController : ControllerBase
 
         return eventModel;
     }
-
-    // PUT: api/Products/5
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-    // more details see https://aka.ms/RazorPagesCRUD.
+    
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProducts(Guid id, Event eventModel)
+    public async Task<ActionResult<Event>> UpdateProducts(Guid id, Event eventModel)
     {
-        if (id != eventModel.Id)
-        {
-            return BadRequest();
-        }
+        if (id != eventModel.Id || eventModel.Id == Guid.Empty)
+            return BadRequest("Event Id mismatch or invalid format");
         _eventService.Update(eventModel);
         await _eventService.SaveChanges();
 
-        return NoContent();
+        return eventModel;
     }
 
     [HttpPost]
