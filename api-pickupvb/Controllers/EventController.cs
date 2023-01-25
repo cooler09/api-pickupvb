@@ -54,12 +54,19 @@ public class EventController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> PostProducts(Event eventModel)
+    public async Task<ActionResult<Guid>> PostProducts(Event eventModel)
     {
-        _eventService.Create(eventModel);
-        await _eventService.SaveChanges();
+        try{
+            _eventService.Create(eventModel);
+            await _eventService.SaveChanges();
 
-        return NoContent();
+            if(eventModel?.Id != null) return Created(new Uri($"/Event/{eventModel.Id}"),eventModel.Id);
+
+            return StatusCode(StatusCodes.Status500InternalServerError, "Event was not created");
+
+        } catch(Exception ex){
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
     }
 
 
