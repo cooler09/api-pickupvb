@@ -4,7 +4,7 @@ then
     sudo apt-get install jq
 fi
 
-version=$(jq -r .Version ../appsettings.json)
+version=$(jq -r .Version ../api-pickupvb/appsettings.json)
 
 sudo docker build -t cooler09/api-pickupvb:$version -t cooler09/api-pickupvb:latest ../.
 sudo docker push cooler09/api-pickupvb:$version
