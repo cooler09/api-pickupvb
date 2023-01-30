@@ -13,19 +13,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var  allowedOrigins = "_allowOrigins";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: allowedOrigins, policy  =>
+    options.AddDefaultPolicy(builder  =>
     {
-        policy.WithOrigins(
-            "https://pickupvb.com",
-            "http://pickupvb.com",
-            "https://www.pickupvb.com",
-            "http://www.pickupvb.com",
-            "http://localhost:4200",
-            "https://localhost:4200"
-        ).AllowAnyHeader()
+        builder.AllowAnyOrigin()
+        .AllowAnyHeader()
         .AllowAnyMethod();
     });
 });
@@ -38,8 +31,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(allowedOrigins);
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthorization();
 
